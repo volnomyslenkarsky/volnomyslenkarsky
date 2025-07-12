@@ -1,194 +1,892 @@
 <!DOCTYPE html>
-<html lang="cs">
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Headhunting & Recruiterská Agentura</title>
-  <style>
-    /* Google Font */
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elite Talent Solutions - Professional HR Headhunting & Recruiting</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    :root {
-      --primary: #006E92;
-      --secondary: #ffffff;
-      --font: 'Poppins', sans-serif;
-    }
-    * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
-    body { font-family: var(--font); color: #333; background: var(--secondary); }
-    header { position: fixed; top: 0; width: 100%; background: var(--secondary); z-index: 100; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-    nav { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: auto; padding: 1rem; }
-    .logo { font-size: 1.5rem; font-weight: 600; color: var(--primary); text-decoration: none; }
-    .menu { list-style: none; display: flex; gap: 1.5rem; }
-    .menu li { position: relative; }
-    .menu a { text-decoration: none; color: #333; font-weight: 500; }
-    .submenu, .lang-switch { display: none; position: absolute; background: var(--secondary); box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-    .menu li:hover > .submenu { display: block; top: 100%; left: 0; }
-    .submenu li { white-space: nowrap; padding: 0.5rem 1rem; }
-    .submenu a { color: #333; }
-    .menu .arrow { margin-left: 0.3rem; display: inline-block; transform: rotate(0deg); transition: transform .3s; }
-    .menu li:hover > a .arrow { transform: rotate(90deg); }
-    .lang { cursor: pointer; }
-    .lang-switch { display: flex; flex-direction: column; top: 100%; right: 0; }
-    .lang:hover > .lang-switch { display: flex; }
+        :root {
+            --primary-color: #006E92;
+            --secondary-color: #2d7a9e;
+            --accent-color: #4a9bc7;
+            --text-dark: #2c3e50;
+            --text-light: #7f8c8d;
+            --white: #ffffff;
+            --light-gray: #f8f9fa;
+            --border-color: #e9ecef;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
 
-    /* Hamburger */
-    .hamburger { display: none; flex-direction: column; cursor: pointer; gap: 5px; }
-    .hamburger div { width: 25px; height: 3px; background: #333; }
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            scroll-behavior: smooth;
+        }
 
-    /* Hero */
-    .hero { display: grid; place-items: center; height: 100vh; text-align: center; background: var(--primary); color: var(--secondary); padding: 0 1rem; }
-    .hero h1 { font-size: 2.5rem; margin-bottom: .5rem; }
-    .hero p { font-size: 1.2rem; }
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--white);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--shadow);
+        }
 
-    /* Sections */
-    section { padding: 4rem 1rem; max-width: 1200px; margin: auto; }
-    .about { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: center; }
-    .about img { width: 100%; border: 2px solid var(--primary); }
-    .about-text h2 { margin-bottom: 1rem; color: var(--primary); }
-    .services { display: grid; grid-template-columns: repeat(auto-fit,minmax(250px,1fr)); gap: 2rem; }
-    .card { background: var(--secondary); border: 1px solid #eee; padding: 1.5rem; transition: transform .3s, box-shadow .3s; }
-    .card:hover { transform: translateY(-5px); box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
-    .card h3 { margin-bottom: .5rem; color: var(--primary); }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
 
-    /* Contact */
-    .contact { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
-    .contact-form { display: flex; flex-direction: column; gap: 1rem; }
-    .contact-form input, .contact-form textarea { padding: .75rem; border: 1px solid #ccc; border-radius: 4px; }
-    .contact-form button { padding: .75rem; border: none; background: var(--primary); color: var(--secondary); cursor: pointer; transition: background .3s; }
-    .contact-form button:hover { background: #005a75; }
-    .contact-details p { margin-bottom: .5rem; }
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--white);
+            text-decoration: none;
+        }
 
-    /* Footer */
-    footer { background: #f8f8f8; text-align: center; padding: 2rem 1rem; margin-top: 2rem; }
-    .social { display: flex; justify-content: center; gap: 1rem; margin-bottom: 1rem; }
-    .social a { color: #333; font-size: 1.2rem; transition: color .3s; }
-    .social a:hover { color: var(--primary); }
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
 
-    /* Responsive */
-    @media(max-width: 768px){
-      .about { grid-template-columns: 1fr; }
-      .contact { grid-template-columns: 1fr; }
-      .menu { display: none; flex-direction: column; background: var(--secondary); position: absolute; top: 100%; left: 0; width: 100%; }
-      .menu li { padding: 1rem; }
-      .hamburger { display: flex; }
-      .lang-switch { right: 1rem; }
-    }
-  </style>
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-color);
+        }
+
+        .mobile-menu {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .mobile-menu span {
+            width: 25px;
+            height: 3px;
+            background: var(--white);
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--white);
+            text-align: center;
+            padding: 120px 2rem 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 300"><polygon fill="rgba(255,255,255,0.1)" points="0,300 1000,300 1000,0"/></svg>');
+            background-size: cover;
+            opacity: 0.1;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--white);
+            color: var(--primary-color);
+            padding: 1rem 2rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            animation: fadeInUp 1s ease 0.4s both;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 80px 2rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: var(--text-light);
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* About Section */
+        .about {
+            background: var(--light-gray);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 1.5rem;
+            background: var(--white);
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            margin-top: 0.5rem;
+        }
+
+        /* Services Section */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .service-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .service-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        /* Process Section */
+        .process {
+            background: var(--light-gray);
+        }
+
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .process-step {
+            text-align: center;
+            position: relative;
+        }
+
+        .step-number {
+            display: inline-block;
+            width: 60px;
+            height: 60px;
+            background: var(--primary-color);
+            color: var(--white);
+            border-radius: 50%;
+            line-height: 60px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .step-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+        }
+
+        /* Testimonials Section */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .testimonial-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            position: relative;
+        }
+
+        .testimonial-quote {
+            font-style: italic;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-weight: 600;
+        }
+
+        .author-info h4 {
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .author-info p {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        /* Contact Section */
+        .contact {
+            background: var(--primary-color);
+            color: var(--white);
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        .contact-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-item i {
+            font-size: 1.2rem;
+            color: var(--accent-color);
+        }
+
+        .contact-form {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .submit-btn {
+            background: var(--primary-color);
+            color: var(--white);
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            width: 100%;
+        }
+
+        .submit-btn:hover {
+            background: var(--secondary-color);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--text-dark);
+            color: var(--white);
+            padding: 3rem 2rem 1rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: var(--primary-color);
+            color: var(--white);
+            border-radius: 50%;
+            text-decoration: none;
+            transition: transform 0.3s ease;
+        }
+
+        .social-links a:hover {
+            transform: translateY(-2px);
+        }
+
+        .footer-text {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: var(--primary-color);
+                flex-direction: column;
+                padding: 1rem;
+                box-shadow: var(--shadow);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .mobile-menu {
+                display: flex;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .about-content,
+            .contact-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .services-grid,
+            .process-steps,
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .about-stats {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <a href="#home" class="logo">Elite Talent Solutions</a>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#process">Process</a></li>
+                <li><a href="#testimonials">Testimonials</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="mobile-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
 
-  <header>
-    <nav>
-      <a href="#" class="logo">RecruitPro</a>
-      <div class="hamburger" onclick="toggleMenu()">
-        <div></div><div></div><div></div>
-      </div>
-      <ul class="menu" id="menu">
-        <li>
-          <a href="#">Pro firmy<span class="arrow">▶</span></a>
-          <ul class="submenu">
-            <li><a href="#services">Najít talenty</a></li>
-            <li><a href="#services">Interim HR manažer</a></li>
-            <li><a href="#services">Umělá inteligence (AI)</a></li>
-          </ul>
-        </li>
-        <li>
-          <a href="#">Pro jednotlivce<span class="arrow">▶</span></a>
-          <ul class="submenu">
-            <li><a href="#services">Koučování</a></li>
-          </ul>
-        </li>
-        <li class="lang">
-          CZ / EN
-          <ul class="lang-switch">
-            <li><a href="#">CZ</a></li>
-            <li><a href="#">EN</a></li>
-          </ul>
-        </li>
-      </ul>
-    </nav>
-  </header>
-
-  <main>
-    <!-- Hero -->
-    <section class="hero" id="hero">
-      <div>
-        <h1>Váš partner pro nejlepší talenty</h1>
-        <p>Profesionální headhunting & recruiter služby šité na míru</p>
-      </div>
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Elite Talent Acquisition</h1>
+            <p>We connect exceptional professionals with industry-leading companies. Your success is our mission.</p>
+            <a href="#contact" class="cta-button">Start Your Search</a>
+        </div>
     </section>
 
-    <!-- About -->
-    <section class="about" id="about">
-      <img src="https://via.placeholder.com/500x400?text=Profil" alt="Profil zakladatele" />
-      <div class="about-text">
-        <h2>O mně</h2>
-        <p>Jsem zkušený headhunter s více než 10 lety praxe v oboru. Pomáhám firmám najít klíčové talenty a jednotlivcům rozvíjet svou kariéru.</p>
-      </div>
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title">About Elite Talent Solutions</h2>
+            <p class="section-subtitle">With over 15 years of experience, we've mastered the art of matching exceptional talent with visionary companies.</p>
+            
+            <div class="about-content">
+                <div class="about-text">
+                    <p>At Elite Talent Solutions, we understand that the right hire can transform your organization. Our boutique approach combines deep industry knowledge with cutting-edge recruitment technology to deliver results that exceed expectations.</p>
+                    
+                    <p>We specialize in executive search, talent acquisition, and HR consulting services for companies ranging from innovative startups to Fortune 500 enterprises. Our team of seasoned professionals brings a wealth of experience across multiple industries, ensuring we understand the unique challenges and opportunities your business faces.</p>
+                    
+                    <div class="about-stats">
+                        <div class="stat-item">
+                            <div class="stat-number">500+</div>
+                            <div class="stat-label">Successful Placements</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">95%</div>
+                            <div class="stat-label">Client Satisfaction</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">15+</div>
+                            <div class="stat-label">Years Experience</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">200+</div>
+                            <div class="stat-label">Partner Companies</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <div style="width: 100%; height: 400px; background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); border-radius: 15px; display: flex; align-items: center; justify-content: center; color: white; font-size: 3rem;">
+                        <i class="fas fa-users"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <!-- Services -->
-    <section class="services" id="services">
-      <div class="card">
-        <h3>Najít talenty</h3>
-        <p>Komplexní vyhledávání a selekce nejvhodnějších kandidátů pro vaši firmu.</p>
-      </div>
-      <div class="card">
-        <h3>Interim HR manažer</h3>
-        <p>Dočasné zastoupení a vedení HR oddělení s okamžitou dostupností.</p>
-      </div>
-      <div class="card">
-        <h3>Umělá inteligence (AI)</h3>
-        <p>Moderní AI nástroje pro rychlejší a přesnější náborový proces.</p>
-      </div>
-      <div class="card">
-        <h3>Koučování</h3>
-        <p>Individuální kariérní koučink pro maximální rozvoj vašeho potenciálu.</p>
-      </div>
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="container">
+            <h2 class="section-title">Our Services</h2>
+            <p class="section-subtitle">Comprehensive talent solutions tailored to your business needs</p>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h3 class="service-title">Executive Search</h3>
+                    <p>Identifying and attracting top-tier executives who can drive your organization's strategic vision forward. Our rigorous process ensures cultural fit and leadership excellence.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-user-plus"></i>
+                    </div>
+                    <h3 class="service-title">Talent Acquisition</h3>
+                    <p>End-to-end recruitment solutions for mid-level to senior positions across all industries. We streamline your hiring process while maintaining quality and efficiency.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="service-title">HR Consulting</h3>
+                    <p>Strategic HR advisory services including compensation analysis, organizational development, and talent strategy consulting to optimize your human capital.</p>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <!-- Contact -->
-    <section class="contact" id="contact">
-      <form class="contact-form" onsubmit="return validateForm()">
-        <h2>Kontaktujte nás</h2>
-        <input type="text" name="name" placeholder="Jméno" required />
-        <input type="email" name="email" placeholder="Email" required />
-        <input type="tel" name="phone" placeholder="Telefon" required pattern="[0-9]{9,}" />
-        <textarea name="message" rows="5" placeholder="Vaše zpráva" required></textarea>
-        <button type="submit">Odeslat</button>
-      </form>
-      <div class="contact-details">
-        <h2>Kontaktní údaje</h2>
-        <p>Email: info@recruitpro.cz</p>
-        <p>Telefon: +420 123 456 789</p>
-        <p>Adresa: Palackého 123, Chrudim</p>
-      </div>
+    <!-- Process Section -->
+    <section id="process" class="process">
+        <div class="container">
+            <h2 class="section-title">Our Process</h2>
+            <p class="section-subtitle">A proven methodology that delivers exceptional results</p>
+            
+            <div class="process-steps">
+                <div class="process-step">
+                    <div class="step-number">1</div>
+                    <h3 class="step-title">Discovery</h3>
+                    <p>We begin by understanding your company culture, requirements, and long-term objectives to create a comprehensive search strategy.</p>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">2</div>
+                    <h3 class="step-title">Research</h3>
+                    <p>Leveraging our extensive network and advanced sourcing techniques to identify the most qualified candidates in the market.</p>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">3</div>
+                    <h3 class="step-title">Evaluation</h3>
+                    <p>Rigorous assessment process including interviews, reference checks, and competency evaluations to ensure the perfect match.</p>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">4</div>
+                    <h3 class="step-title">Placement</h3>
+                    <p>Facilitating the final selection and negotiation process, ensuring a smooth transition for both candidate and client.</p>
+                </div>
+            </div>
+        </div>
     </section>
-  </main>
 
-  <!-- Footer -->
-  <footer>
-    <div class="social">
-      <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-      <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-      <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-    </div>
-    <p>&copy; 2025 RecruitPro. Všechna práva vyhrazena.</p>
-  </footer>
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="testimonials">
+        <div class="container">
+            <h2 class="section-title">Client Testimonials</h2>
+            <p class="section-subtitle">What our clients say about our services</p>
+            
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <p class="testimonial-quote">"Elite Talent Solutions transformed our hiring process. They found us a exceptional CEO who has tripled our revenue in just two years. Their understanding of our industry and culture was remarkable."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">SM</div>
+                        <div class="author-info">
+                            <h4>Sarah Mitchell</h4>
+                            <p>Board Chair, TechVision Corp</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <p class="testimonial-quote">"Working with Elite Talent Solutions was a game-changer for our expansion. They provided us with top-tier candidates who not only met our technical requirements but also embodied our company values."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">DJ</div>
+                        <div class="author-info">
+                            <h4>David Johnson</h4>
+                            <p>VP of Operations, GlobalTech Solutions</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <p class="testimonial-quote">"The professionalism and attention to detail shown by Elite Talent Solutions is unmatched. They made our executive search process seamless and successful. I highly recommend their services."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">MR</div>
+                        <div class="author-info">
+                            <h4>Maria Rodriguez</h4>
+                            <p>CHRO, Innovation Dynamics</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  <!-- Font Awesome -->
-  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-  <script>
-    // Hamburger toggle
-    function toggleMenu() {
-      const menu = document.getElementById('menu');
-      menu.style.display = menu.style.display === 'flex' ? 'none' : 'flex';
-    }
-    // Form validation
-    function validateForm() {
-      // HTML5 does basic validation; can add custom checks here
-      return true;
-    }
-  </script>
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title" style="color: white;">Get In Touch</h2>
+            <p class="section-subtitle" style="color: rgba(255,255,255,0.9);">Ready to find your next great hire or dream opportunity?</p>
+            
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Contact Information</h3>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h4>Address</h4>
+                            <p>123 Executive Plaza, Suite 456<br>Business District, NY 10001</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <h4>Phone</h4>
+                            <p>+1 (555) 123-4567</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h4>Email</h4>
+                            <p>contact@elitetalentsolutions.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-clock"></i>
+                        <div>
+                            <h4>Business Hours</h4>
+                            <p>Monday - Friday: 9:00 AM - 6:00 PM<br>Saturday: 10:00 AM - 2:00 PM</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <form class="contact-form" id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Full Name *</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="company">Company</label>
+                        <input type="text" id="company" name="company">
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" name="phone">
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message *</label>
+                        <textarea id="message" name="message" placeholder="Tell us about your hiring needs or career goals..." required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="social-links">
+                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            </div>
+            <p class="footer-text">&copy; 2025 Elite Talent Solutions. All rights reserved. | Privacy Policy | Terms of Service</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const navLinks = document.querySelector('.nav-links');
+
+        mobileMenu.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    // Close mobile menu if open
+                    navLinks.classList.remove('active');
+                }
+            });
+        });
+
+        // Contact form handling
+        const contactForm = document.getElementById('contactForm');
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(contactForm);
+            const data = {};
+            formData.forEach((value, key) => {
+                data[key] = value;
+            });
+            
+            // Simple validation
+            if (!data.name || !data.email || !data.message) {
+                alert('Please fill in all required fields.');
+                return;
+            }
+            
+            // Email validation
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailPattern.test(data.email)) {
+                alert('Please enter a valid email address.');
+                return;
+            }
+            
+            // Success message (in real implementation, you'd send to server)
+            alert('Thank you for your message! We will get back to you within 24 hours.');
+            contactForm.reset();
+        });
+
+        // Add scroll effect to header
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(31, 78, 107, 0.95)';
+            } else {
+                header.style.background = 'linear-gradient(135deg, var(--primary-color), var(--secondary-color))';
+            }
+        });
+
+        // Animate elements on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all cards and sections
+        document.querySelectorAll('.service-card, .testimonial-card, .process-step').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
 </body>
 </html>
