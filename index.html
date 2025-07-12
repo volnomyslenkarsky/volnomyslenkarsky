@@ -3,37 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HR Specialista - Osobní portfolio</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <title>XY - HR Specialista | Profesionální HR poradenství</title>
+    <meta name="description" content="Kompletní webová prezentace HR specialistky XY. Nabízím komplexní služby v oblasti náboru, kariérního poradenství a HR konzultací.">
+    <link rel="icon" href="https://via.placeholder.com/16" type="image/png">
     
     <style>
-        /* --- Globální nastavení a proměnné --- */
+        /* --- Import písem a definice proměnných --- */
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:wght@400;600&display=swap');
+        @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css');
+
         :root {
-            --primary-color: #2c3e50; /* Tmavě modro-šedá */
-            --secondary-color: #3498db; /* Světle modrá */
-            --light-gray: #f4f4f4;
-            --dark-gray: #333;
-            --white: #ffffff;
-            --font-headings: 'Lato', sans-serif;
+            --primary-color: #2D3748; /* Tmavě šedá (pro text) */
+            --secondary-color: #4A90E2; /* Modrý akcent */
+            --background-color: #FFFFFF; /* Bílé pozadí */
+            --light-gray-bg: #F7FAFC; /* Světle šedé pozadí pro sekce */
+            --border-color: #E2E8F0; /* Barva ohraničení */
+            --font-heading: 'Montserrat', sans-serif;
             --font-body: 'Open Sans', sans-serif;
         }
 
-        html {
+        /* --- Globální reset a základní styly --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
             scroll-behavior: smooth;
         }
 
         body {
-            margin: 0;
-            padding: 0;
             font-family: var(--font-body);
-            color: var(--dark-gray);
             line-height: 1.6;
-            background-color: var(--white);
+            color: var(--primary-color);
+            background-color: var(--background-color);
         }
 
-        /* --- Základní styly --- */
         .container {
             max-width: 1100px;
             margin: 0 auto;
@@ -41,323 +44,492 @@
         }
 
         h1, h2, h3 {
-            font-family: var(--font-headings);
+            font-family: var(--font-heading);
             font-weight: 700;
-            color: var(--primary-color);
+            margin-bottom: 1rem;
         }
-        
+
+        h1 { font-size: 2.8rem; }
+        h2 { font-size: 2.2rem; color: var(--secondary-color); text-align: center; }
+        h3 { font-size: 1.5rem; }
+
+        p {
+            margin-bottom: 1rem;
+        }
+
+        a {
+            color: var(--secondary-color);
+            text-decoration: none;
+        }
+
         section {
             padding: 4rem 0;
         }
-        
-        section#o-mne {
-             background-color: var(--light-gray);
-        }
 
-        /* --- Navigace --- */
-        .main-nav {
-            background: var(--white);
+        /* --- Hlavička a navigace --- */
+        .main-header {
+            background: var(--background-color);
             padding: 1rem 0;
-            position: fixed;
-            width: 100%;
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
 
-        .main-nav .container {
+        .main-header .container {
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
-        .main-nav .logo {
-            font-family: var(--font-headings);
+        .logo {
+            font-family: var(--font-heading);
             font-size: 1.5rem;
             font-weight: 700;
             color: var(--primary-color);
-            text-decoration: none;
         }
 
         .main-nav ul {
             list-style: none;
             display: flex;
-            margin: 0;
-            padding: 0;
         }
 
         .main-nav ul li {
             margin-left: 2rem;
         }
 
-        .main-nav ul a {
-            text-decoration: none;
-            color: var(--primary-color);
+        .main-nav ul li a {
             font-weight: 600;
             transition: color 0.3s ease;
         }
 
-        .main-nav ul a:hover {
+        .main-nav ul li a:hover,
+        .main-nav ul li a.active {
+            color: #0056b3;
+            border-bottom: 2px solid #0056b3;
+            padding-bottom: 5px;
+        }
+
+        /* --- Patička --- */
+        .main-footer {
+            background: var(--primary-color);
+            color: var(--background-color);
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+
+        .social-links a {
+            color: white;
+            margin: 0 0.5rem;
+            font-size: 1.5rem;
+        }
+
+        /* --- Utility třídy --- */
+        .btn {
+            display: inline-block;
+            background: var(--secondary-color);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: background 0.3s ease;
+        }
+
+        .btn:hover {
+            background: #357ABD;
+        }
+
+        .bg-light {
+            background: var(--light-gray-bg);
+        }
+
+        /* --- Hero sekce (Domů) --- */
+        .hero {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            min-height: 80vh;
+        }
+
+        .hero-content {
+            max-width: 50%;
+        }
+
+        .hero-image img {
+            max-width: 400px;
+            border-radius: 10px;
+        }
+
+        /* --- Sekce "O mně" --- */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-grid img {
+            width: 100%;
+            max-width: 300px;
+            border-radius: 50%;
+        }
+
+        .cv-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .cv-list li {
+            padding-left: 1.5rem;
+            position: relative;
+            margin-bottom: 0.5rem;
+        }
+
+        .cv-list li::before {
+            content: '\f00c'; /* Font Awesome check ikona */
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            left: 0;
             color: var(--secondary-color);
         }
-
-        /* --- Hero Sekce --- */
-        .hero {
-            background: linear-gradient(rgba(44, 62, 80, 0.8), rgba(44, 62, 80, 0.8)), url('https://via.placeholder.com/1920x1080/cccccc/ffffff?text=Pozadí') no-repeat center center/cover;
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: var(--white);
-            padding-top: 60px; /* Kompenzace za fixní navigaci */
-        }
         
-        .hero-content {
-            display: flex;
-            align-items: center;
-            gap: 2rem;
+        blockquote {
+            background: var(--light-gray-bg);
+            border-left: 5px solid var(--secondary-color);
+            padding: 1.5rem;
+            margin: 2rem 0;
         }
 
-        .hero-photo {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            border: 3px solid var(--secondary-color);
-            object-fit: cover;
-        }
-
-        .hero-text {
-            max-width: 600px;
-            text-align: left;
-        }
-
-        .hero h1 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            color: var(--white);
-        }
-
-        .hero p {
-            font-size: 1.2rem;
-            max-width: 600px;
-        }
-
-        /* --- Sekce Služby --- */
+        /* --- Sekce "Služby" --- */
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
-            margin-top: 2rem;
+            margin-top: 3rem;
         }
 
         .service-card {
-            background: var(--white);
-            padding: 2rem;
+            background: white;
+            border: 1px solid var(--border-color);
             border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+            padding: 2rem;
             text-align: center;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
         .service-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 6px 15px rgba(0,0,0,0.12);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.08);
         }
-        
+
         .service-card .icon {
             font-size: 3rem;
             color: var(--secondary-color);
             margin-bottom: 1rem;
         }
 
-        .service-card h3 {
-            font-size: 1.3rem;
-            margin-bottom: 0.5rem;
+        /* --- Sekce "Reference" --- */
+        .testimonial-card {
+            background: var(--light-gray-bg);
+            border-left: 5px solid var(--secondary-color);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border-radius: 5px;
         }
 
-        /* --- Sekce Kontakt --- */
-        .contact-content {
-            text-align: center;
-            max-width: 700px;
-            margin: 0 auto;
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            margin-top: 1rem;
         }
-        
-        .contact-content h2 {
+
+        .testimonial-author img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            margin-right: 1rem;
+        }
+
+        .testimonial-author-info strong {
+            display: block;
+        }
+
+        /* --- Sekce "Blog" --- */
+        .blog-post-preview {
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 2rem;
             margin-bottom: 2rem;
         }
 
-        .cta-button {
-            display: inline-block;
-            background: var(--secondary-color);
-            color: var(--white);
-            padding: 1rem 2.5rem;
+        .blog-post-preview:last-child {
+            border-bottom: none;
+        }
+
+        /* --- Sekce "Kontakt" --- */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 0.8rem;
+            margin-bottom: 1rem;
+            border: 1px solid var(--border-color);
             border-radius: 5px;
-            text-decoration: none;
-            font-weight: 700;
-            font-family: var(--font-headings);
-            transition: background 0.3s ease;
+            font-family: var(--font-body);
         }
 
-        .cta-button:hover {
-            background: #2980b9; /* Tmavší modrá */
-        }
-        
-        .contact-info {
-            margin-top: 2rem;
-            font-size: 1.1rem;
-        }
-        
-        .contact-info a {
-            color: var(--primary-color);
-            text-decoration: none;
-        }
-        
-        .contact-info a:hover {
-            text-decoration: underline;
+        .map-placeholder iframe {
+            width: 100%;
+            height: 350px;
+            border: 0;
+            filter: grayscale(100%);
+            margin-top: 3rem;
         }
 
-        /* --- Patička --- */
-        footer {
-            background: var(--primary-color);
-            color: var(--white);
-            text-align: center;
-            padding: 1.5rem 0;
-        }
-
-        /* --- Responzivita --- */
+        /* --- Responzivní design --- */
         @media (max-width: 768px) {
-            .main-nav .container {
+            h1 { font-size: 2.2rem; }
+            h2 { font-size: 1.8rem; }
+
+            .main-header .container {
                 flex-direction: column;
-                align-items: center;
             }
 
             .main-nav ul {
+                flex-direction: column;
+                text-align: center;
                 margin-top: 1rem;
                 padding-left: 0;
             }
 
             .main-nav ul li {
-                margin: 0 0.8rem;
+                margin: 0.5rem 0;
             }
 
             .hero {
-                height: auto;
-                padding: 6rem 0;
+                flex-direction: column-reverse;
+                text-align: center;
+                padding-top: 2rem;
+                min-height: auto;
             }
-            
+
             .hero-content {
-                flex-direction: column;
+                max-width: 100%;
             }
             
-            .hero-text {
+            .about-grid, .contact-grid {
+                grid-template-columns: 1fr;
                 text-align: center;
             }
 
-            .hero h1 {
-                font-size: 2rem;
+            .about-grid img {
+                margin: 0 auto 2rem auto;
+                display: block;
             }
             
-            section {
-                padding: 3rem 0;
+            .contact-grid {
+                text-align: left;
             }
         }
     </style>
 </head>
 <body>
 
-    <!-- Navigace -->
-    <nav class="main-nav">
+    <header class="main-header">
         <div class="container">
-            <a href="#" class="logo">HR Expert</a>
-            <ul>
-                <li><a href="#o-mne">O mně</a></li>
-                <li><a href="#sluzby">Služby</a></li>
-                <li><a href="#kontakt">Kontakt</a></li>
-            </ul>
-        </div>
-    </nav>
-
-    <!-- Hero Sekce -->
-    <header class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <img src="https://via.placeholder.com/150/2c3e50/ffffff?text=XY" alt="Portrétní fotografie" class="hero-photo">
-                <div class="hero-text">
-                    <h1>Váš partner ve světě lidských zdrojů</h1>
-                    <p>
-                        Jmenuji se XY a působím v oblasti lidských zdrojů více než 9 let. Specializuji se na nábor zaměstnanců, typologii lidí, průzkum trhu práce a tvorbu životopisů. Nabízím profesionální služby HR specialisty.
-                    </p>
-                </div>
-            </div>
+            <a href="#home" class="logo">XY | HR Specialista</a>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="#home" class="active">Domů</a></li>
+                    <li><a href="#about">O mně</a></li>
+                    <li><a href="#services">Služby</a></li>
+                    <li><a href="#testimonials">Reference</a></li>
+                    <li><a href="#blog">Blog</a></li>
+                    <li><a href="#contact">Kontakt</a></li>
+                </ul>
+            </nav>
         </div>
     </header>
 
     <main>
-        <!-- Sekce 'O mně' -->
-        <section id="o-mne">
-            <div class="container">
-                <h2>O mně</h2>
-                <p>
-                    Vítejte na mé osobní stránce. Během své devítileté praxe v HR jsem pomohl desítkám firem najít ty správné talenty a stovkám kandidátů nastartovat jejich kariéru. Věřím, že klíčem k úspěchu je hluboké porozumění potřebám klienta i trhu. Mojí silnou stránkou je empatie, strategické myšlení a schopnost propojovat lidi s příležitostmi, které jim dávají smysl.
-                </p>
-                <p>
-                    Spolupráce se mnou vám přinese nejen odborné znalosti, ale i osobní přístup a partnera, na kterého se můžete spolehnout. Ať už hledáte nového člena týmu, nebo chcete poradit s vlastním profesním směřováním, jsem tu pro vás.
-                </p>
+        <!-- ======== DOMOVSKÁ STRÁNKA ======== -->
+        <section id="home">
+            <div class="container hero">
+                <div class="hero-content">
+                    <h1>Vaše kariéra a tým v rukou experta</h1>
+                    <p>S více než 9 lety zkušeností v HR pomáhám firmám nacházet ty správné talenty a jednotlivcům růst v jejich kariéře. Specializuji se na nábor, kariérní poradenství a optimalizaci HR procesů.</p>
+                    <a href="#about" class="btn">Zjistit více</a>
+                </div>
+                <div class="hero-image">
+                    <img src="https://via.placeholder.com/400x400.png?text=XY+foto" alt="Portrét HR specialistky XY">
+                </div>
             </div>
         </section>
 
-        <!-- Sekce 'Služby' -->
-        <section id="sluzby">
+        <!-- ======== O MNĚ ======== -->
+        <section id="about" class="bg-light">
             <div class="container">
-                <h2 style="text-align: center;">Co nabízím</h2>
+                <h2>Kdo jsem a v co věřím</h2>
+                <div class="about-grid">
+                    <div class="about-image">
+                        <img src="https://via.placeholder.com/300x300.png?text=XY" alt="Profesionální portrét XY">
+                    </div>
+                    <div class="about-content">
+                        <p>Jmenuji se XY a oblast lidských zdrojů je mou vášní již více než devět let. Věřím, že správně sestavený tým je základem úspěchu každé firmy a že každý jednotlivec má potenciál najít práci, která ho bude naplňovat. Mým posláním je propojovat tyto dva světy.</p>
+                        <p>K práci přistupuji s empatií, analytickým myšlením a důrazem na transparentní komunikaci. Každý klient, ať už firma nebo jednotlivec, je pro mě partnerem.</p>
+                    </div>
+                </div>
+                <h3 style="text-align:center; margin-top: 3rem;">Moje profesní milníky</h3>
+                <ul class="cv-list" style="max-width: 600px; margin: 1rem auto;">
+                    <li><strong>9+ let praxe</strong> v oblasti HR a náboru</li>
+                    <li>Expertíza v <strong>typologii osobnosti</strong> (MBTI, DISC)</li>
+                    <li>Úspěšné obsazení stovek pozic od juniorů po top management</li>
+                    <li>Certifikace v <strong>kariérním poradenství</strong></li>
+                    <li>Realizace HR auditů a strategií pro malé i střední firmy</li>
+                </ul>
+                 <blockquote>
+                    <p>"Lidské zdroje nejsou jen o procesech a číslech. Jsou o lidech, jejich snech, talentech a potenciálu. Mým cílem je vytvářet prostředí, kde se talent může setkat s příležitostí a společně růst."</p>
+                </blockquote>
+            </div>
+        </section>
+
+        <!-- ======== SLUŽBY ======== -->
+        <section id="services">
+            <div class="container">
+                <h2>Co pro vás mohu udělat</h2>
+                <p style="text-align: center; max-width: 700px; margin: 0 auto;">Nabízím širokou škálu služeb navržených tak, aby podpořily jak růst vaší firmy, tak vaši osobní kariérní cestu.</p>
                 <div class="services-grid">
                     <div class="service-card">
-                        <div class="icon">✓</div>
-                        <h3>Nábor a výběr</h3>
-                        <p>Kompletní zajištění náborového procesu od definice pozice po výběr finálního kandidáta.</p>
+                        <div class="icon"><i class="fas fa-users"></i></div>
+                        <h3>Nábor zaměstnanců</h3>
+                        <p>Najdu pro váš tým ty správné lidi. Postarám se o celý proces od definice pozice po finální výběr.</p>
+                        <a href="#contact" class="btn">Mám zájem</a>
                     </div>
                     <div class="service-card">
-                        <div class="icon">✓</div>
+                        <div class="icon"><i class="fas fa-file-alt"></i></div>
+                        <h3>Audit CV a LinkedIn</h3>
+                        <p>Pomohu vám vytvořit životopis a profil na LinkedIn, které zaujmou a otevřou vám dveře k vysněné práci.</p>
+                        <a href="#contact" class="btn">Mám zájem</a>
+                    </div>
+                    <div class="service-card">
+                        <div class="icon"><i class="fas fa-brain"></i></div>
                         <h3>Typologie osobnosti</h3>
-                        <p>Analýza osobnostních profilů (např. MBTI, DiSC) pro lepší týmovou dynamiku a rozvoj.</p>
+                        <p>Pomohu vám lépe porozumět sobě i členům vašeho týmu a zlepšit tak vzájemnou spolupráci.</p>
+                        <a href="#contact" class="btn">Mám zájem</a>
                     </div>
                     <div class="service-card">
-                        <div class="icon">✓</div>
-                        <h3>Poradenství pro uchazeče</h3>
-                        <p>Příprava na pohovor, kariérní poradenství a strategie hledání nového zaměstnání.</p>
-                    </div>
-                    <div class="service-card">
-                        <div class="icon">✓</div>
-                        <h3>Revize životopisů</h3>
-                        <p>Profesionální úprava CV a motivačních dopisů pro maximální dopad na personalisty.</p>
+                        <div class="icon"><i class="fas fa-building"></i></div>
+                        <h3>Firemní HR poradenství</h3>
+                        <p>Nastavím nebo zefektivním vaše interní HR procesy – od onboardingu po hodnocení zaměstnanců.</p>
+                        <a href="#contact" class="btn">Mám zájem</a>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Sekce 'Kontakt' -->
-        <section id="kontakt">
+        <!-- ======== REFERENCE ======== -->
+        <section id="testimonials" class="bg-light">
             <div class="container">
-                <div class="contact-content">
-                    <h2>Máte zájem o spolupráci?</h2>
-                    <p>Neváhejte se mi ozvat. Rád s vámi proberu vaše potřeby a navrhnu řešení na míru.</p>
-                    <a href="mailto:vas.email@domena.cz" class="cta-button">Napište mi</a>
-                    <div class="contact-info">
-                        <p>
-                            E-mail: <a href="mailto:vas.email@domena.cz">vas.email@domena.cz</a><br>
-                            LinkedIn: <a href="https://www.linkedin.com/in/vase-jmeno" target="_blank">linkedin.com/in/vase-jmeno</a>
-                        </p>
+                <h2>Co o mně říkají klienti</h2>
+                <div class="testimonial-card">
+                    <blockquote>
+                        <p>"Spolupráce byla velmi profesionální, díky XY jsme našli perfektní kandidáty na dvě klíčové pozice během jednoho měsíce. Její přehled na trhu a cit pro výběr lidí je naprosto unikátní."</p>
+                    </blockquote>
+                    <div class="testimonial-author">
+                        <img src="https://via.placeholder.com/60x60.png?text=Klient" alt="Foto klienta">
+                        <div class="testimonial-author-info">
+                            <strong>Petr Novák</strong>
+                            <span>CEO, Tech Solutions s.r.o.</span>
+                        </div>
                     </div>
+                </div>
+                <div class="testimonial-card">
+                    <blockquote>
+                        <p>"Díky konzultaci a revizi mého CV jsem získala práci, o které jsem si dříve myslela, že je pro mě nedosažitelná. Skvělý a lidský přístup, který mi dodal sebevědomí."</p>
+                    </blockquote>
+                    <div class="testimonial-author">
+                        <img src="https://via.placeholder.com/60x60.png?text=Klientka" alt="Foto klientky">
+                        <div class="testimonial-author-info">
+                            <strong>Jana Dvořáková</strong>
+                            <span>Marketing Manager</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ======== BLOG ======== -->
+        <section id="blog">
+            <div class="container">
+                <h2>Postřehy ze světa HR</h2>
+                 <p style="text-align: center; max-width: 700px; margin: 0 auto 3rem auto;">Pravidelně sdílím své myšlenky a praktické rady, které vám pomohou lépe se orientovat na trhu práce.</p>
+                <article class="blog-post-preview">
+                    <h3>Jak napsat CV, které zaujme</h3>
+                    <p>Váš životopis je první věc, kterou personalista uvidí. Je to vaše vstupenka na pohovor. Zde se podíváme na klíčové prvky, které musí moderní CV obsahovat, a jak se odlišit...</p>
+                    <a href="#" class="btn">Číst více (již brzy)</a>
+                </article>
+                <article class="blog-post-preview">
+                    <h3>5 tipů pro efektivní pohovor</h3>
+                    <p>Pohovor není jen o správných odpovědích, ale i o celkovém dojmu. Připravil jsem pro vás pět tipů, jak se na pohovor připravit, co nepodcenit a jak zvládnout i záludné otázky...</p>
+                    <a href="#" class="btn">Číst více (již brzy)</a>
+                </article>
+            </div>
+        </section>
+
+        <!-- ======== KONTAKT ======== -->
+        <section id="contact" class="bg-light">
+            <div class="container">
+                <h2>Spojte se se mnou</h2>
+                <p style="text-align: center; max-width: 700px; margin: 0 auto;">Máte zájem o spolupráci, nebo se chcete jen na něco zeptat? Neváhejte mě kontaktovat.</p>
+                <div class="contact-grid">
+                    <div class="contact-details">
+                        <h3>Kontaktní údaje</h3>
+                        <p><i class="fas fa-envelope"></i> E-mail: <a href="mailto:kontakt@xy-hr.cz">kontakt@xy-hr.cz</a></p>
+                        <p><i class="fab fa-linkedin"></i> LinkedIn: <a href="#" target="_blank">linkedin.com/in/xy-specialista</a></p>
+                        <hr style="margin: 2rem 0; border-color: var(--border-color)">
+                        <h3>Materiály ke stažení</h3>
+                        <p>Zde si můžete stáhnout mé profesní portfolio ve formátu PDF.</p>
+                        <a href="#" class="btn"><i class="fas fa-download"></i> Stáhnout brožuru</a>
+                    </div>
+                    <div class="contact-form">
+                        <h3>Napište mi</h3>
+                        <form action="#" method="POST">
+                            <label for="name" class="sr-only">Jméno</label>
+                            <input type="text" id="name" name="name" placeholder="Vaše jméno" required>
+                            <label for="email" class="sr-only">E-mail</label>
+                            <input type="email" id="email" name="email" placeholder="Váš e-mail" required>
+                            <label for="message" class="sr-only">Zpráva</label>
+                            <textarea id="message" name="message" rows="5" placeholder="Jak vám mohu pomoci?" required></textarea>
+                            <button type="submit" class="btn">Odeslat zprávu</button>
+                        </form>
+                    </div>
+                </div>
+                 <div class="map-placeholder">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2561.898555132537!2d14.42123931571708!3d50.08746547942693!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x470b94e6e7b41e6b%3A0x400af0f6615b1b0!2sPrague!5e0!3m2!1sen!2scz!4v1672528980000!5m2!1sen!2scz" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
                 </div>
             </div>
         </section>
     </main>
 
-    <!-- Patička -->
-    <footer>
+    <footer class="main-footer">
         <div class="container">
-            <p>&copy; 2025 Jméno Příjmení | Všechna práva vyhrazena.</p>
+            <div class="social-links">
+                <a href="#" aria-label="LinkedIn profil"><i class="fab fa-linkedin"></i></a>
+                <a href="mailto:kontakt@xy-hr.cz" aria-label="Email"><i class="fas fa-envelope"></i></a>
+            </div>
+            <p>&copy; 2025 XY | Všechna práva vyhrazena.</p>
         </div>
     </footer>
 
