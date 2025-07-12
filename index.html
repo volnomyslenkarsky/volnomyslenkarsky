@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Elite Talent Solutions - Professional HR Headhunting & Recruiting</title>
+    <title>HT Talent</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
@@ -35,7 +35,7 @@
 
         /* Header */
         header {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            background: linear-gradient(135deg, #8B0000, #B22222);
             color: var(--white);
             padding: 1rem 0;
             position: fixed;
@@ -76,6 +76,17 @@
 
         .nav-links a:hover {
             color: var(--accent-color);
+        }
+
+        #language-select {
+            padding: 0.5rem;
+            border: none;
+            border-radius: 5px;
+            background: var(--white);
+            color: var(--text-dark);
+            font-weight: 500;
+            cursor: pointer;
+            margin-right: 1rem;
         }
 
         .mobile-menu {
@@ -496,7 +507,7 @@
                 top: 100%;
                 left: 0;
                 width: 100%;
-                background: var(--primary-color);
+                background: #8B0000;
                 flex-direction: column;
                 padding: 1rem;
                 box-shadow: var(--shadow);
@@ -537,6 +548,11 @@
             .about-stats {
                 grid-template-columns: 1fr;
             }
+
+            #language-select {
+                margin-right: 0;
+                margin-bottom: 1rem;
+            }
         }
     </style>
 </head>
@@ -544,7 +560,7 @@
     <!-- Header -->
     <header>
         <nav>
-            <a href="#home" class="logo">Elite Talent Solutions</a>
+            <a href="#home" class="logo">HT Talent</a>
             <ul class="nav-links">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#about">About</a></li>
@@ -553,6 +569,10 @@
                 <li><a href="#testimonials">Testimonials</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
+            <select id="language-select" aria-label="Select Language">
+                <option value="cz">Český jazyk</option>
+                <option value="en">Anglický jazyk</option>
+            </select>
             <div class="mobile-menu">
                 <span></span>
                 <span></span>
@@ -564,7 +584,7 @@
     <!-- Hero Section -->
     <section id="home" class="hero">
         <div class="hero-content">
-            <h1>Elite Talent Acquisition</h1>
+            <h1>HT Talent</h1>
             <p>We connect exceptional professionals with industry-leading companies. Your success is our mission.</p>
             <a href="#contact" class="cta-button">Start Your Search</a>
         </div>
@@ -859,9 +879,9 @@
         window.addEventListener('scroll', () => {
             const header = document.querySelector('header');
             if (window.scrollY > 100) {
-                header.style.background = 'rgba(31, 78, 107, 0.95)';
+                header.style.background = 'rgba(139, 0, 0, 0.95)';
             } else {
-                header.style.background = 'linear-gradient(135deg, var(--primary-color), var(--secondary-color))';
+                header.style.background = 'linear-gradient(135deg, #8B0000, #B22222)';
             }
         });
 
