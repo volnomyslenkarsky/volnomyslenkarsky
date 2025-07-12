@@ -1,892 +1,251 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="cs">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Elite Talent Solutions - Professional HR Headhunting & Recruiting</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>XY - HR Specialista | Profesionální HR poradenství</title>
+    <meta name="description" content="Kompletní webová prezentace HR specialistky XY s nabídkou služeb pro firmy i jednotlivce.">
+    <link rel="icon" href="https://via.placeholder.com/16" type="image/png">
+    
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        /* --- Import písem a definice proměnných --- */
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:wght@400;600&display=swap');
+        @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css');
 
         :root {
-            --primary-color: #1f4e6b;
-            --secondary-color: #2d7a9e;
-            --accent-color: #4a9bc7;
-            --text-dark: #2c3e50;
-            --text-light: #7f8c8d;
-            --white: #ffffff;
-            --light-gray: #f8f9fa;
-            --border-color: #e9ecef;
-            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.15);
+            --primary-color: #2D3748;
+            --secondary-color: #005F6A; /* Petrolejový akcent */
+            --background-color: #FFFFFF;
+            --light-gray-bg: #F7FAFC;
+            --border-color: #E2E8F0;
+            --font-heading: 'Montserrat', sans-serif;
+            --font-body: 'Open Sans', sans-serif;
         }
 
-        body {
-            font-family: 'Inter', sans-serif;
-            line-height: 1.6;
-            color: var(--text-dark);
-            scroll-behavior: smooth;
-        }
+        /* --- Globální reset a základní styly --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+        body { font-family: var(--font-body); line-height: 1.6; color: var(--primary-color); background-color: var(--background-color); }
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
+        h1, h2, h3 { font-family: var(--font-heading); font-weight: 700; margin-bottom: 1rem; }
+        h1 { font-size: 2.8rem; }
+        h2 { font-size: 2.2rem; color: var(--secondary-color); text-align: center; }
+        h3 { font-size: 1.5rem; }
+        p { margin-bottom: 1rem; }
+        a { color: var(--secondary-color); text-decoration: none; }
+        section { padding: 4rem 0; }
 
-        /* Header */
-        header {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            color: var(--white);
-            padding: 1rem 0;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            box-shadow: var(--shadow);
-        }
+        /* --- Hlavička a navigace --- */
+        .main-header { background: var(--background-color); padding: 1rem 0; border-bottom: 1px solid var(--border-color); position: sticky; top: 0; z-index: 1000; }
+        .main-header .container { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-family: var(--font-heading); font-size: 1.5rem; font-weight: 700; color: var(--primary-color); }
+        .main-nav ul { list-style: none; display: flex; align-items: center; }
+        .main-nav ul li { margin-left: 2rem; position: relative; } /* Position relative pro podmenu */
+        .main-nav ul li a { font-weight: 600; transition: color 0.3s ease; padding: 10px 0; }
+        .main-nav ul li a:hover { color: #003c42; }
 
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        .logo {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--white);
-            text-decoration: none;
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
-
-        .nav-links a {
-            color: var(--white);
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s ease;
-        }
-
-        .nav-links a:hover {
-            color: var(--accent-color);
-        }
-
-        .mobile-menu {
+        /* === STYLY PRO VNOŘENÉ DROPDOWN MENU === */
+        .dropdown-content, .submenu {
             display: none;
-            flex-direction: column;
-            cursor: pointer;
-        }
-
-        .mobile-menu span {
-            width: 25px;
-            height: 3px;
-            background: var(--white);
-            margin: 3px 0;
-            transition: 0.3s;
-        }
-
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            color: var(--white);
-            text-align: center;
-            padding: 120px 2rem 80px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 300"><polygon fill="rgba(255,255,255,0.1)" points="0,300 1000,300 1000,0"/></svg>');
-            background-size: cover;
-            opacity: 0.1;
-        }
-
-        .hero-content {
-            max-width: 800px;
-            margin: 0 auto;
-            position: relative;
+            background-color: var(--secondary-color);
+            min-width: 240px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.1);
             z-index: 1;
+            list-style: none;
+            padding: 0;
+            border-radius: 5px;
         }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            animation: fadeInUp 1s ease;
+        .dropdown-content {
+            top: 100%; /* Zobrazí se pod hlavní položkou */
+            left: 0;
         }
-
-        .hero p {
-            font-size: 1.3rem;
-            margin-bottom: 2rem;
-            opacity: 0.9;
-            animation: fadeInUp 1s ease 0.2s both;
+        .submenu {
+            top: 0; /* Zarovná se s rodičovskou položkou */
+            left: 100%; /* Zobrazí se napravo */
         }
-
-        .cta-button {
-            display: inline-block;
-            background: var(--white);
-            color: var(--primary-color);
-            padding: 1rem 2rem;
+        .dropdown:hover > .dropdown-content { display: block; }
+        .submenu-container:hover > .submenu { display: block; }
+        
+        .dropdown-content a, .submenu a {
+            color: white;
+            padding: 12px 16px;
             text-decoration: none;
-            border-radius: 50px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            animation: fadeInUp 1s ease 0.4s both;
-        }
-
-        .cta-button:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-lg);
-        }
-
-        /* Section Styles */
-        section {
-            padding: 80px 2rem;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            color: var(--primary-color);
-        }
-
-        .section-subtitle {
-            text-align: center;
-            font-size: 1.2rem;
-            color: var(--text-light);
-            margin-bottom: 3rem;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        /* About Section */
-        .about {
-            background: var(--light-gray);
-        }
-
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-
-        .about-text {
-            font-size: 1.1rem;
-            line-height: 1.8;
-        }
-
-        .about-stats {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .stat-item {
-            text-align: center;
-            padding: 1.5rem;
-            background: var(--white);
-            border-radius: 10px;
-            box-shadow: var(--shadow);
-        }
-
-        .stat-number {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: var(--primary-color);
-        }
-
-        .stat-label {
-            font-size: 0.9rem;
-            color: var(--text-light);
-            margin-top: 0.5rem;
-        }
-
-        /* Services Section */
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .service-card {
-            background: var(--white);
-            padding: 2rem;
-            border-radius: 15px;
-            box-shadow: var(--shadow);
-            text-align: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .service-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .service-icon {
-            font-size: 3rem;
-            color: var(--primary-color);
-            margin-bottom: 1rem;
-        }
-
-        .service-title {
-            font-size: 1.3rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            color: var(--primary-color);
-        }
-
-        /* Process Section */
-        .process {
-            background: var(--light-gray);
-        }
-
-        .process-steps {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .process-step {
-            text-align: center;
-            position: relative;
-        }
-
-        .step-number {
-            display: inline-block;
-            width: 60px;
-            height: 60px;
-            background: var(--primary-color);
-            color: var(--white);
-            border-radius: 50%;
-            line-height: 60px;
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-        }
-
-        .step-title {
-            font-size: 1.2rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-            color: var(--primary-color);
-        }
-
-        /* Testimonials Section */
-        .testimonials-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .testimonial-card {
-            background: var(--white);
-            padding: 2rem;
-            border-radius: 15px;
-            box-shadow: var(--shadow);
-            position: relative;
-        }
-
-        .testimonial-quote {
-            font-style: italic;
-            font-size: 1.1rem;
-            line-height: 1.6;
-            margin-bottom: 1.5rem;
-        }
-
-        .testimonial-author {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .author-avatar {
-            width: 50px;
-            height: 50px;
-            background: var(--primary-color);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--white);
-            font-weight: 600;
-        }
-
-        .author-info h4 {
-            font-weight: 600;
-            color: var(--primary-color);
-        }
-
-        .author-info p {
-            color: var(--text-light);
-            font-size: 0.9rem;
-        }
-
-        /* Contact Section */
-        .contact {
-            background: var(--primary-color);
-            color: var(--white);
-        }
-
-        .contact-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: start;
-        }
-
-        .contact-info h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 1rem;
-        }
-
-        .contact-item i {
-            font-size: 1.2rem;
-            color: var(--accent-color);
-        }
-
-        .contact-form {
-            background: var(--white);
-            padding: 2rem;
-            border-radius: 15px;
-            box-shadow: var(--shadow-lg);
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group label {
             display: block;
-            margin-bottom: 0.5rem;
-            color: var(--text-dark);
-            font-weight: 500;
+            text-align: left;
         }
+        .dropdown-content a:hover, .submenu a:hover { background-color: #004c55; }
+        
+        .fa-chevron-down { font-size: 0.8em; margin-left: 5px; }
+        .fa-chevron-right { font-size: 0.8em; float: right; line-height: inherit; }
 
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 0.75rem;
-            border: 2px solid var(--border-color);
-            border-radius: 8px;
-            font-family: inherit;
-            font-size: 1rem;
-            transition: border-color 0.3s ease;
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: var(--primary-color);
-        }
-
-        .form-group textarea {
-            resize: vertical;
-            min-height: 120px;
-        }
-
-        .submit-btn {
-            background: var(--primary-color);
-            color: var(--white);
-            padding: 1rem 2rem;
-            border: none;
-            border-radius: 8px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background 0.3s ease;
-            width: 100%;
-        }
-
-        .submit-btn:hover {
-            background: var(--secondary-color);
-        }
-
-        /* Footer */
-        footer {
-            background: var(--text-dark);
-            color: var(--white);
-            padding: 3rem 2rem 1rem;
-            text-align: center;
-        }
-
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-bottom: 2rem;
-        }
-
-        .social-links a {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            background: var(--primary-color);
-            color: var(--white);
-            border-radius: 50%;
-            text-decoration: none;
-            transition: transform 0.3s ease;
-        }
-
-        .social-links a:hover {
-            transform: translateY(-2px);
-        }
-
-        .footer-text {
-            color: var(--text-light);
-            font-size: 0.9rem;
-        }
-
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Responsive Design */
+        /* --- Ostatní styly --- */
+        .main-footer { background: var(--primary-color); color: var(--background-color); text-align: center; padding: 2rem 0; margin-top: 3rem; }
+        .btn { display: inline-block; background: var(--secondary-color); color: white; padding: 0.8rem 1.5rem; border-radius: 5px; font-weight: 600; transition: background 0.3s ease; }
+        .btn:hover { background: #004c55; }
+        .bg-light { background: var(--light-gray-bg); }
+        .hero { display: flex; align-items: center; justify-content: space-between; min-height: 80vh; }
+        .hero-content { max-width: 50%; }
+        .hero-image img { max-width: 400px; border-radius: 10px; filter: grayscale(1); }
+        .about-grid { display: grid; grid-template-columns: 1fr 2fr; gap: 3rem; align-items: center; }
+        .about-grid img { width: 100%; max-width: 300px; border-radius: 50%; filter: grayscale(1); }
+        blockquote { background: #fdfdfd; border-left: 5px solid var(--secondary-color); padding: 1.5rem; margin: 2rem 0; font-style: italic; }
+        .blog-post-preview { border-bottom: 1px solid var(--border-color); padding-bottom: 2rem; margin-bottom: 2rem; }
+        .blog-post-preview:last-child { border-bottom: none; }
+        .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; margin-top: 3rem; }
+        
+        /* --- Responzivní design --- */
         @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
+            .main-header .container { flex-direction: column; }
+            .main-nav ul { flex-direction: column; text-align: center; margin-top: 1rem; padding-left: 0; width: 100%; }
+            .main-nav ul li { margin: 0; width: 100%; }
+            .main-nav ul li a { padding: 1rem; display: block; }
+            .fa-chevron-down, .fa-chevron-right { display: none; }
+            
+            /* Na mobilu se všechna menu zobrazí jako statické seznamy */
+            .dropdown-content, .submenu {
+                position: static;
+                display: block;
+                background: transparent;
+                box-shadow: none;
                 width: 100%;
-                background: var(--primary-color);
-                flex-direction: column;
-                padding: 1rem;
-                box-shadow: var(--shadow);
             }
-
-            .nav-links.active {
-                display: flex;
+            .dropdown-content a, .submenu a {
+                color: var(--secondary-color);
+                text-align: center;
+                background-color: var(--light-gray-bg);
+                border-bottom: 1px solid var(--border-color);
             }
-
-            .mobile-menu {
-                display: flex;
+            .submenu a {
+                padding-left: 2rem; /* Odsazení pro vnořené položky */
+                background-color: #f0f4f8;
             }
-
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .hero p {
-                font-size: 1.1rem;
-            }
-
-            .section-title {
-                font-size: 2rem;
-            }
-
-            .about-content,
-            .contact-content {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-
-            .services-grid,
-            .process-steps,
-            .testimonials-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .about-stats {
-                grid-template-columns: 1fr;
-            }
+            .hero { flex-direction: column-reverse; text-align: center; padding-top: 2rem; min-height: auto; }
+            .hero-content { max-width: 100%; }
+            .about-grid, .contact-grid { grid-template-columns: 1fr; text-align: center; }
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
-    <header>
-        <nav>
-            <a href="#home" class="logo">Elite Talent Solutions</a>
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#process">Process</a></li>
-                <li><a href="#testimonials">Testimonials</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-            <div class="mobile-menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </nav>
+
+    <header class="main-header">
+        <div class="container">
+            <a href="#sluzby" class="logo">XY | HR Specialista</a>
+            <nav class="main-nav">
+                <ul>
+                    <li class="dropdown">
+                        <a href="#sluzby">Služby <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-content">
+                            <li class="submenu-container">
+                                <a href="#">Pro firmy <i class="fas fa-chevron-right"></i></a>
+                                <ul class="submenu">
+                                    <li><a href="#najit-talenty">Najít talenty</a></li>
+                                    <li><a href="#interim-hr">Interim HR manažer</a></li>
+                                    <li><a href="#ai">Umělá inteligence AI</a></li>
+                                </ul>
+                            </li>
+                            <li class="submenu-container">
+                                <a href="#">Pro jednotlivce <i class="fas fa-chevron-right"></i></a>
+                                <ul class="submenu">
+                                    <li><a href="#koucovani">Koučování</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><a href="#about">O mně</a></li>
+                    <li><a href="#blog">Blog</a></li>
+                    <li><a href="#contact">Kontakt</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="hero-content">
-            <h1>Elite Talent Acquisition</h1>
-            <p>We connect exceptional professionals with industry-leading companies. Your success is our mission.</p>
-            <a href="#contact" class="cta-button">Start Your Search</a>
-        </div>
-    </section>
+    <main>
+        <!-- ======== SLUŽBY - ÚVODNÍ SEKCE ======== -->
+        <section id="sluzby">
+            <div class="container hero">
+                <div class="hero-content">
+                    <h1 style="color: var(--secondary-color);">Expert na lidské zdroje pro váš růst</h1>
+                    <p>Pomáhám firmám budovat silné týmy a jednotlivcům objevovat svůj kariérní potenciál. Specializuji se na moderní nábor, strategické HR a osobní rozvoj.</p>
+                    <a href="#contact" class="btn">Nezávazná konzultace</a>
+                </div>
+                <div class="hero-image">
+                    <img src="https://via.placeholder.com/400x400.png?text=XY+Kresba" alt="Kresba portrétu HR specialistky XY">
+                </div>
+            </div>
+        </section>
 
-    <!-- About Section -->
-    <section id="about" class="about">
+        <!-- ======== NOVÉ SEKCE PRO SLUŽBY ======== -->
+        <section id="najit-talenty" class="bg-light">
+             <div class="container"><h2>Najít talenty</h2><p style="text-align: center; max-width: 700px; margin: 0 auto;">Postarám se o celý náborový cyklus – od analýzy potřeb až po finální doporučení nejlepších kandidátů.</p></div>
+        </section>
+        <section id="interim-hr">
+             <div class="container"><h2>Interim HR manažer</h2><p style="text-align: center; max-width: 700px; margin: 0 auto;">Potřebujete dočasně zastřešit HR agendu? Nabízím flexibilní externí spolupráci pro řízení vašich lidských zdrojů.</p></div>
+        </section>
+        <section id="ai" class="bg-light">
+             <div class="container"><h2>Umělá inteligence (AI) v HR</h2><p style="text-align: center; max-width: 700px; margin: 0 auto;">Využívám moderní AI nástroje pro efektivnější nábor, analýzu dat a personalizaci, což přináší rychlejší a přesnější výsledky.</p></div>
+        </section>
+        <section id="koucovani">
+             <div class="container"><h2>Koučování</h2><p style="text-align: center; max-width: 700px; margin: 0 auto;">Pomohu vám definovat vaše kariérní cíle, připravit se na pohovor nebo zvládnout změnu v profesním životě.</p></div>
+        </section>
+
+        <!-- ======== O MNĚ ======== -->
+        <section id="about" class="bg-light">
+             <div class="container">
+                <h2>Kdo jsem a v co věřím</h2>
+                <div class="about-grid">
+                    <div class="about-image"><img src="https://via.placeholder.com/300x300.png?text=XY" alt="Kresba portrétu XY"></div>
+                    <div class="about-content"><p>Jmenuji se XY a oblast lidských zdrojů je mou vášní již více než devět let. Věřím, že správně sestavený tým je základem úspěchu každé firmy.</p></div>
+                </div>
+                 <blockquote><p>"Lidské zdroje jsou o lidech, jejich snech a potenciálu. Mým cílem je vytvářet prostředí, kde se talent může setkat s příležitostí a společně růst."</p></blockquote>
+            </div>
+        </section>
+
+        <!-- ======== BLOG ======== -->
+        <section id="blog">
+             <div class="container">
+                <h2>Postřehy ze světa HR</h2>
+                <article class="blog-post-preview">
+                    <h3>Jak napsat CV, které zaujme</h3>
+                    <p>Váš životopis je vaše vstupenka na pohovor. Zde se podíváme na klíčové prvky, které musí moderní CV obsahovat...</p>
+                    <a href="#" class="btn">Číst více (již brzy)</a>
+                </article>
+                <article class="blog-post-preview">
+                    <h3>5 tipů pro efektivní pohovor</h3>
+                    <p>Pohovor není jen o správných odpovědích, ale i o celkovém dojmu, který zanecháte. Připravil jsem pro vás pět tipů...</p>
+                    <a href="#" class="btn">Číst více (již brzy)</a>
+                </article>
+            </div>
+        </section>
+
+        <!-- ======== KONTAKT ======== -->
+        <section id="contact" class="bg-light">
+            <div class="container">
+                <h2>Spojte se se mnou</h2>
+                <div class="contact-grid">
+                    <div class="contact-details">
+                        <h3>Kontaktní údaje</h3>
+                        <p><i class="fas fa-envelope"></i> E-mail: <a href="mailto:kontakt@xy-hr.cz">kontakt@xy-hr.cz</a></p>
+                        <p><i class="fab fa-linkedin"></i> LinkedIn: <a href="#" target="_blank">linkedin.com/in/xy-specialista</a></p>
+                    </div>
+                    <div class="contact-form">
+                        <h3>Napište mi</h3>
+                        <form action="#" method="POST">
+                            <input type="text" id="name" name="name" placeholder="Vaše jméno" required>
+                            <input type="email" id="email" name="email" placeholder="Váš e-mail" required>
+                            <textarea id="message" name="message" rows="5" placeholder="Jak vám mohu pomoci?" required></textarea>
+                            <button type="submit" class="btn">Odeslat zprávu</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
         <div class="container">
-            <h2 class="section-title">About Elite Talent Solutions</h2>
-            <p class="section-subtitle">With over 15 years of experience, we've mastered the art of matching exceptional talent with visionary companies.</p>
-            
-            <div class="about-content">
-                <div class="about-text">
-                    <p>At Elite Talent Solutions, we understand that the right hire can transform your organization. Our boutique approach combines deep industry knowledge with cutting-edge recruitment technology to deliver results that exceed expectations.</p>
-                    
-                    <p>We specialize in executive search, talent acquisition, and HR consulting services for companies ranging from innovative startups to Fortune 500 enterprises. Our team of seasoned professionals brings a wealth of experience across multiple industries, ensuring we understand the unique challenges and opportunities your business faces.</p>
-                    
-                    <div class="about-stats">
-                        <div class="stat-item">
-                            <div class="stat-number">500+</div>
-                            <div class="stat-label">Successful Placements</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-number">95%</div>
-                            <div class="stat-label">Client Satisfaction</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-number">15+</div>
-                            <div class="stat-label">Years Experience</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-number">200+</div>
-                            <div class="stat-label">Partner Companies</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="about-image">
-                    <div style="width: 100%; height: 400px; background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); border-radius: 15px; display: flex; align-items: center; justify-content: center; color: white; font-size: 3rem;">
-                        <i class="fas fa-users"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Services Section -->
-    <section id="services" class="services">
-        <div class="container">
-            <h2 class="section-title">Our Services</h2>
-            <p class="section-subtitle">Comprehensive talent solutions tailored to your business needs</p>
-            
-            <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-search"></i>
-                    </div>
-                    <h3 class="service-title">Executive Search</h3>
-                    <p>Identifying and attracting top-tier executives who can drive your organization's strategic vision forward. Our rigorous process ensures cultural fit and leadership excellence.</p>
-                </div>
-                
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-user-plus"></i>
-                    </div>
-                    <h3 class="service-title">Talent Acquisition</h3>
-                    <p>End-to-end recruitment solutions for mid-level to senior positions across all industries. We streamline your hiring process while maintaining quality and efficiency.</p>
-                </div>
-                
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                    <h3 class="service-title">HR Consulting</h3>
-                    <p>Strategic HR advisory services including compensation analysis, organizational development, and talent strategy consulting to optimize your human capital.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Process Section -->
-    <section id="process" class="process">
-        <div class="container">
-            <h2 class="section-title">Our Process</h2>
-            <p class="section-subtitle">A proven methodology that delivers exceptional results</p>
-            
-            <div class="process-steps">
-                <div class="process-step">
-                    <div class="step-number">1</div>
-                    <h3 class="step-title">Discovery</h3>
-                    <p>We begin by understanding your company culture, requirements, and long-term objectives to create a comprehensive search strategy.</p>
-                </div>
-                
-                <div class="process-step">
-                    <div class="step-number">2</div>
-                    <h3 class="step-title">Research</h3>
-                    <p>Leveraging our extensive network and advanced sourcing techniques to identify the most qualified candidates in the market.</p>
-                </div>
-                
-                <div class="process-step">
-                    <div class="step-number">3</div>
-                    <h3 class="step-title">Evaluation</h3>
-                    <p>Rigorous assessment process including interviews, reference checks, and competency evaluations to ensure the perfect match.</p>
-                </div>
-                
-                <div class="process-step">
-                    <div class="step-number">4</div>
-                    <h3 class="step-title">Placement</h3>
-                    <p>Facilitating the final selection and negotiation process, ensuring a smooth transition for both candidate and client.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Testimonials Section -->
-    <section id="testimonials" class="testimonials">
-        <div class="container">
-            <h2 class="section-title">Client Testimonials</h2>
-            <p class="section-subtitle">What our clients say about our services</p>
-            
-            <div class="testimonials-grid">
-                <div class="testimonial-card">
-                    <p class="testimonial-quote">"Elite Talent Solutions transformed our hiring process. They found us a exceptional CEO who has tripled our revenue in just two years. Their understanding of our industry and culture was remarkable."</p>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">SM</div>
-                        <div class="author-info">
-                            <h4>Sarah Mitchell</h4>
-                            <p>Board Chair, TechVision Corp</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="testimonial-card">
-                    <p class="testimonial-quote">"Working with Elite Talent Solutions was a game-changer for our expansion. They provided us with top-tier candidates who not only met our technical requirements but also embodied our company values."</p>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">DJ</div>
-                        <div class="author-info">
-                            <h4>David Johnson</h4>
-                            <p>VP of Operations, GlobalTech Solutions</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="testimonial-card">
-                    <p class="testimonial-quote">"The professionalism and attention to detail shown by Elite Talent Solutions is unmatched. They made our executive search process seamless and successful. I highly recommend their services."</p>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">MR</div>
-                        <div class="author-info">
-                            <h4>Maria Rodriguez</h4>
-                            <p>CHRO, Innovation Dynamics</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <div class="container">
-            <h2 class="section-title" style="color: white;">Get In Touch</h2>
-            <p class="section-subtitle" style="color: rgba(255,255,255,0.9);">Ready to find your next great hire or dream opportunity?</p>
-            
-            <div class="contact-content">
-                <div class="contact-info">
-                    <h3>Contact Information</h3>
-                    <div class="contact-item">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <div>
-                            <h4>Address</h4>
-                            <p>123 Executive Plaza, Suite 456<br>Business District, NY 10001</p>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <i class="fas fa-phone"></i>
-                        <div>
-                            <h4>Phone</h4>
-                            <p>+1 (555) 123-4567</p>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <i class="fas fa-envelope"></i>
-                        <div>
-                            <h4>Email</h4>
-                            <p>contact@elitetalentsolutions.com</p>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <i class="fas fa-clock"></i>
-                        <div>
-                            <h4>Business Hours</h4>
-                            <p>Monday - Friday: 9:00 AM - 6:00 PM<br>Saturday: 10:00 AM - 2:00 PM</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <form class="contact-form" id="contactForm">
-                    <div class="form-group">
-                        <label for="name">Full Name *</label>
-                        <input type="text" id="name" name="name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email Address *</label>
-                        <input type="email" id="email" name="email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="company">Company</label>
-                        <input type="text" id="company" name="company">
-                    </div>
-                    <div class="form-group">
-                        <label for="phone">Phone Number</label>
-                        <input type="tel" id="phone" name="phone">
-                    </div>
-                    <div class="form-group">
-                        <label for="message">Message *</label>
-                        <textarea id="message" name="message" placeholder="Tell us about your hiring needs or career goals..." required></textarea>
-                    </div>
-                    <button type="submit" class="submit-btn">Send Message</button>
-                </form>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <div class="footer-content">
-            <div class="social-links">
-                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-            </div>
-            <p class="footer-text">&copy; 2025 Elite Talent Solutions. All rights reserved. | Privacy Policy | Terms of Service</p>
+            <p>&copy; 2025 XY | Všechna práva vyhrazena.</p>
         </div>
     </footer>
 
-    <script>
-        // Mobile menu toggle
-        const mobileMenu = document.querySelector('.mobile-menu');
-        const navLinks = document.querySelector('.nav-links');
-
-        mobileMenu.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-        });
-
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                    // Close mobile menu if open
-                    navLinks.classList.remove('active');
-                }
-            });
-        });
-
-        // Contact form handling
-        const contactForm = document.getElementById('contactForm');
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Get form data
-            const formData = new FormData(contactForm);
-            const data = {};
-            formData.forEach((value, key) => {
-                data[key] = value;
-            });
-            
-            // Simple validation
-            if (!data.name || !data.email || !data.message) {
-                alert('Please fill in all required fields.');
-                return;
-            }
-            
-            // Email validation
-            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailPattern.test(data.email)) {
-                alert('Please enter a valid email address.');
-                return;
-            }
-            
-            // Success message (in real implementation, you'd send to server)
-            alert('Thank you for your message! We will get back to you within 24 hours.');
-            contactForm.reset();
-        });
-
-        // Add scroll effect to header
-        window.addEventListener('scroll', () => {
-            const header = document.querySelector('header');
-            if (window.scrollY > 100) {
-                header.style.background = 'rgba(31, 78, 107, 0.95)';
-            } else {
-                header.style.background = 'linear-gradient(135deg, var(--primary-color), var(--secondary-color))';
-            }
-        });
-
-        // Animate elements on scroll
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver(function(entries) {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, observerOptions);
-
-        // Observe all cards and sections
-        document.querySelectorAll('.service-card, .testimonial-card, .process-step').forEach(el => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(20px)';
-            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-            observer.observe(el);
-        });
-    </script>
 </body>
 </html>
