@@ -1,967 +1,194 @@
 <!DOCTYPE html>
 <html lang="cs">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HRTalent Pro - Profesionální Headhunting a HR Služby</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --primary-color: #2c5f41;
-            --secondary-color: #ffffff;
-            --accent-color: #1a4332;
-            --text-dark: #333333;
-            --text-light: #666666;
-            --gradient: linear-gradient(135deg, #2c5f41 0%, #1a4332 100%);
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            line-height: 1.6;
-            color: var(--text-dark);
-            scroll-behavior: smooth;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* Header Styles */
-        .header {
-            background: var(--secondary-color);
-            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-        }
-
-        .nav-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .logo {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--primary-color);
-            text-decoration: none;
-        }
-
-        .nav-menu {
-            display: flex;
-            list-style: none;
-            align-items: center;
-            gap: 30px;
-        }
-
-        .nav-item {
-            position: relative;
-        }
-
-        .nav-link {
-            color: var(--text-dark);
-            text-decoration: none;
-            font-weight: 500;
-            padding: 10px 0;
-            transition: color 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-
-        .nav-link:hover {
-            color: var(--primary-color);
-        }
-
-        /* Dropdown Styles */
-        .dropdown {
-            position: absolute;
-            top: 100%;
-            left: 0;
-            background: var(--secondary-color);
-            min-width: 200px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            border-radius: 8px;
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(-10px);
-            transition: all 0.3s ease;
-            z-index: 1001;
-        }
-
-        .nav-item:hover .dropdown {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-
-        .dropdown-item {
-            position: relative;
-        }
-
-        .dropdown-link {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 15px 20px;
-            color: var(--text-dark);
-            text-decoration: none;
-            border-bottom: 1px solid #f0f0f0;
-            transition: background-color 0.3s ease;
-        }
-
-        .dropdown-link:hover {
-            background-color: #f8f9fa;
-            color: var(--primary-color);
-        }
-
-        .dropdown-link:last-child {
-            border-bottom: none;
-        }
-
-        /* Nested Dropdown */
-        .nested-dropdown {
-            position: absolute;
-            top: 0;
-            left: 100%;
-            background: var(--secondary-color);
-            min-width: 180px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            border-radius: 8px;
-            opacity: 0;
-            visibility: hidden;
-            transform: translateX(-10px);
-            transition: all 0.3s ease;
-            z-index: 1002;
-        }
-
-        .dropdown-item:hover .nested-dropdown {
-            opacity: 1;
-            visibility: visible;
-            transform: translateX(0);
-        }
-
-        /* Language Switcher */
-        .language-switcher {
-            display: flex;
-            gap: 10px;
-            align-items: center;
-        }
-
-        .lang-btn {
-            padding: 8px 12px;
-            border: 2px solid var(--primary-color);
-            background: transparent;
-            color: var(--primary-color);
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: 500;
-            transition: all 0.3s ease;
-        }
-
-        .lang-btn.active,
-        .lang-btn:hover {
-            background: var(--primary-color);
-            color: var(--secondary-color);
-        }
-
-        /* Mobile Menu */
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-            gap: 4px;
-        }
-
-        .hamburger span {
-            width: 25px;
-            height: 3px;
-            background: var(--primary-color);
-            transition: 0.3s;
-        }
-
-        .hamburger.active span:nth-child(1) {
-            transform: rotate(45deg) translate(5px, 5px);
-        }
-
-        .hamburger.active span:nth-child(2) {
-            opacity: 0;
-        }
-
-        .hamburger.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(7px, -6px);
-        }
-
-        /* Hero Section */
-        .hero {
-            background: var(--gradient);
-            color: var(--secondary-color);
-            padding: 120px 0 80px;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><path d="M0,300 Q300,200 600,300 T1200,300 L1200,600 L0,600 Z" fill="rgba(255,255,255,0.05)"/></svg>') no-repeat bottom center;
-            background-size: cover;
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 2;
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            font-weight: 700;
-            margin-bottom: 20px;
-            line-height: 1.2;
-        }
-
-        .hero p {
-            font-size: 1.3rem;
-            margin-bottom: 40px;
-            opacity: 0.9;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .cta-button {
-            display: inline-block;
-            padding: 15px 35px;
-            background: var(--secondary-color);
-            color: var(--primary-color);
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 1.1rem;
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-        }
-
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
-        }
-
-        /* About Section */
-        .about {
-            padding: 100px 0;
-            background: var(--secondary-color);
-        }
-
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
-        }
-
-        .about-text h2 {
-            font-size: 2.5rem;
-            color: var(--primary-color);
-            margin-bottom: 30px;
-            font-weight: 600;
-        }
-
-        .about-text p {
-            font-size: 1.1rem;
-            color: var(--text-light);
-            margin-bottom: 20px;
-        }
-
-        .about-image {
-            text-align: center;
-        }
-
-        .sketch-portrait {
-            width: 300px;
-            height: 400px;
-            background: var(--secondary-color);
-            border: 3px solid var(--text-dark);
-            border-radius: 15px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .sketch-portrait::before {
-            content: '';
-            position: absolute;
-            top: 20%;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 80px;
-            border: 3px solid var(--text-dark);
-            border-radius: 50%;
-            background: transparent;
-        }
-
-        .sketch-portrait::after {
-            content: '';
-            position: absolute;
-            top: 40%;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 120px;
-            height: 200px;
-            border: 3px solid var(--text-dark);
-            border-radius: 60px 60px 0 0;
-            background: transparent;
-            border-bottom: none;
-        }
-
-        /* Services Section */
-        .services {
-            padding: 100px 0;
-            background: #f8f9fa;
-        }
-
-        .services h2 {
-            text-align: center;
-            font-size: 2.5rem;
-            color: var(--primary-color);
-            margin-bottom: 60px;
-            font-weight: 600;
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
-        }
-
-        .service-card {
-            background: var(--secondary-color);
-            padding: 40px 30px;
-            border-radius: 15px;
-            text-align: center;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .service-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
-        }
-
-        .service-icon {
-            width: 80px;
-            height: 80px;
-            margin: 0 auto 20px;
-            background: var(--primary-color);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            color: var(--secondary-color);
-        }
-
-        .service-card h3 {
-            font-size: 1.5rem;
-            color: var(--primary-color);
-            margin-bottom: 15px;
-            font-weight: 600;
-        }
-
-        .service-card p {
-            color: var(--text-light);
-            line-height: 1.6;
-        }
-
-        /* Contact Section */
-        .contact {
-            padding: 100px 0;
-            background: var(--secondary-color);
-        }
-
-        .contact h2 {
-            text-align: center;
-            font-size: 2.5rem;
-            color: var(--primary-color);
-            margin-bottom: 60px;
-            font-weight: 600;
-        }
-
-        .contact-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-        }
-
-        .contact-form {
-            background: #f8f9fa;
-            padding: 40px;
-            border-radius: 15px;
-        }
-
-        .form-group {
-            margin-bottom: 25px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            color: var(--text-dark);
-            font-weight: 500;
-        }
-
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 15px;
-            border: 2px solid #e0e0e0;
-            border-radius: 8px;
-            font-size: 1rem;
-            transition: border-color 0.3s ease;
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: var(--primary-color);
-        }
-
-        .form-group textarea {
-            height: 120px;
-            resize: vertical;
-        }
-
-        .submit-btn {
-            width: 100%;
-            padding: 15px;
-            background: var(--gradient);
-            color: var(--secondary-color);
-            border: none;
-            border-radius: 8px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .submit-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(44, 95, 65, 0.3);
-        }
-
-        .contact-info h3 {
-            color: var(--primary-color);
-            margin-bottom: 30px;
-            font-size: 1.5rem;
-            font-weight: 600;
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: center;
-            margin-bottom: 25px;
-            gap: 15px;
-        }
-
-        .contact-item i {
-            color: var(--primary-color);
-            font-size: 1.2rem;
-            width: 20px;
-        }
-
-        /* Footer */
-        .footer {
-            background: var(--text-dark);
-            color: var(--secondary-color);
-            padding: 40px 0;
-            text-align: center;
-        }
-
-        .footer-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 20px;
-        }
-
-        .social-links a {
-            color: var(--secondary-color);
-            font-size: 1.5rem;
-            transition: color 0.3s ease;
-        }
-
-        .social-links a:hover {
-            color: var(--primary-color);
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .hamburger {
-                display: flex;
-            }
-
-            .nav-menu {
-                position: fixed;
-                top: 70px;
-                left: -100%;
-                width: 100%;
-                height: calc(100vh - 70px);
-                background: var(--secondary-color);
-                flex-direction: column;
-                justify-content: flex-start;
-                align-items: center;
-                transition: left 0.3s ease;
-                padding-top: 50px;
-                box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            }
-
-            .nav-menu.active {
-                left: 0;
-            }
-
-            .nav-item {
-                width: 90%;
-                text-align: center;
-                border-bottom: 1px solid #f0f0f0;
-            }
-
-            .dropdown {
-                position: static;
-                opacity: 1;
-                visibility: visible;
-                transform: none;
-                box-shadow: none;
-                background: #f8f9fa;
-                margin-top: 10px;
-            }
-
-            .nested-dropdown {
-                position: static;
-                opacity: 1;
-                visibility: visible;
-                transform: none;
-                box-shadow: none;
-                background: #e9ecef;
-                margin-top: 5px;
-            }
-
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .hero p {
-                font-size: 1.1rem;
-            }
-
-            .about-content {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-
-            .contact-content {
-                grid-template-columns: 1fr;
-            }
-
-            .footer-content {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .language-switcher {
-                margin-top: 20px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .container {
-                padding: 0 15px;
-            }
-
-            .hero {
-                padding: 100px 0 60px;
-            }
-
-            .hero h1 {
-                font-size: 2rem;
-            }
-
-            .about, .services, .contact {
-                padding: 60px 0;
-            }
-
-            .sketch-portrait {
-                width: 250px;
-                height: 320px;
-            }
-        }
-
-        /* Hidden class for language switching */
-        .hidden {
-            display: none !important;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Headhunting & Recruiterská Agentura</title>
+  <style>
+    /* Google Font */
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+    :root {
+      --primary: #006E92;
+      --secondary: #ffffff;
+      --font: 'Poppins', sans-serif;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+    body { font-family: var(--font); color: #333; background: var(--secondary); }
+    header { position: fixed; top: 0; width: 100%; background: var(--secondary); z-index: 100; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+    nav { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: auto; padding: 1rem; }
+    .logo { font-size: 1.5rem; font-weight: 600; color: var(--primary); text-decoration: none; }
+    .menu { list-style: none; display: flex; gap: 1.5rem; }
+    .menu li { position: relative; }
+    .menu a { text-decoration: none; color: #333; font-weight: 500; }
+    .submenu, .lang-switch { display: none; position: absolute; background: var(--secondary); box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+    .menu li:hover > .submenu { display: block; top: 100%; left: 0; }
+    .submenu li { white-space: nowrap; padding: 0.5rem 1rem; }
+    .submenu a { color: #333; }
+    .menu .arrow { margin-left: 0.3rem; display: inline-block; transform: rotate(0deg); transition: transform .3s; }
+    .menu li:hover > a .arrow { transform: rotate(90deg); }
+    .lang { cursor: pointer; }
+    .lang-switch { display: flex; flex-direction: column; top: 100%; right: 0; }
+    .lang:hover > .lang-switch { display: flex; }
+
+    /* Hamburger */
+    .hamburger { display: none; flex-direction: column; cursor: pointer; gap: 5px; }
+    .hamburger div { width: 25px; height: 3px; background: #333; }
+
+    /* Hero */
+    .hero { display: grid; place-items: center; height: 100vh; text-align: center; background: var(--primary); color: var(--secondary); padding: 0 1rem; }
+    .hero h1 { font-size: 2.5rem; margin-bottom: .5rem; }
+    .hero p { font-size: 1.2rem; }
+
+    /* Sections */
+    section { padding: 4rem 1rem; max-width: 1200px; margin: auto; }
+    .about { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: center; }
+    .about img { width: 100%; border: 2px solid var(--primary); }
+    .about-text h2 { margin-bottom: 1rem; color: var(--primary); }
+    .services { display: grid; grid-template-columns: repeat(auto-fit,minmax(250px,1fr)); gap: 2rem; }
+    .card { background: var(--secondary); border: 1px solid #eee; padding: 1.5rem; transition: transform .3s, box-shadow .3s; }
+    .card:hover { transform: translateY(-5px); box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+    .card h3 { margin-bottom: .5rem; color: var(--primary); }
+
+    /* Contact */
+    .contact { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+    .contact-form { display: flex; flex-direction: column; gap: 1rem; }
+    .contact-form input, .contact-form textarea { padding: .75rem; border: 1px solid #ccc; border-radius: 4px; }
+    .contact-form button { padding: .75rem; border: none; background: var(--primary); color: var(--secondary); cursor: pointer; transition: background .3s; }
+    .contact-form button:hover { background: #005a75; }
+    .contact-details p { margin-bottom: .5rem; }
+
+    /* Footer */
+    footer { background: #f8f8f8; text-align: center; padding: 2rem 1rem; margin-top: 2rem; }
+    .social { display: flex; justify-content: center; gap: 1rem; margin-bottom: 1rem; }
+    .social a { color: #333; font-size: 1.2rem; transition: color .3s; }
+    .social a:hover { color: var(--primary); }
+
+    /* Responsive */
+    @media(max-width: 768px){
+      .about { grid-template-columns: 1fr; }
+      .contact { grid-template-columns: 1fr; }
+      .menu { display: none; flex-direction: column; background: var(--secondary); position: absolute; top: 100%; left: 0; width: 100%; }
+      .menu li { padding: 1rem; }
+      .hamburger { display: flex; }
+      .lang-switch { right: 1rem; }
+    }
+  </style>
 </head>
 <body>
-    <!-- Header -->
-    <header class="header">
-        <nav class="nav-container">
-            <a href="#" class="logo">HRTalent Pro</a>
-            
-            <ul class="nav-menu" id="nav-menu">
-                <li class="nav-item">
-                    <a href="#hero" class="nav-link">
-                        <span data-cs="Domů" data-en="Home">Domů</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="#about" class="nav-link">
-                        <span data-cs="O mně" data-en="About Me">O mně</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <span data-cs="Služby" data-en="Services">Služby</span>
-                        <i class="fas fa-chevron-down"></i>
-                    </a>
-                    <div class="dropdown">
-                        <div class="dropdown-item">
-                            <a href="#" class="dropdown-link">
-                                <span data-cs="Pro firmy" data-en="For Companies">Pro firmy</span>
-                                <i class="fas fa-chevron-right"></i>
-                            </a>
-                            <div class="nested-dropdown">
-                                <a href="#" class="dropdown-link">
-                                    <span data-cs="Najít talenty" data-en="Find Talents">Najít talenty</span>
-                                </a>
-                                <a href="#" class="dropdown-link">
-                                    <span data-cs="Interim HR manažer" data-en="Interim HR Manager">Interim HR manažer</span>
-                                </a>
-                                <a href="#" class="dropdown-link">
-                                    <span data-cs="Umělá inteligence AI" data-en="Artificial Intelligence AI">Umělá inteligence AI</span>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="dropdown-item">
-                            <a href="#" class="dropdown-link">
-                                <span data-cs="Pro jednotlivce" data-en="For Individuals">Pro jednotlivce</span>
-                                <i class="fas fa-chevron-right"></i>
-                            </a>
-                            <div class="nested-dropdown">
-                                <a href="#" class="dropdown-link">
-                                    <span data-cs="Koučování" data-en="Coaching">Koučování</span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <a href="#contact" class="nav-link">
-                        <span data-cs="Kontakt" data-en="Contact">Kontakt</span>
-                    </a>
-                </li>
-                <li class="nav-item language-switcher">
-                    <button class="lang-btn active" data-lang="cs">CZ</button>
-                    <button class="lang-btn" data-lang="en">EN</button>
-                </li>
-            </ul>
 
-            <div class="hamburger" id="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </nav>
-    </header>
+  <header>
+    <nav>
+      <a href="#" class="logo">RecruitPro</a>
+      <div class="hamburger" onclick="toggleMenu()">
+        <div></div><div></div><div></div>
+      </div>
+      <ul class="menu" id="menu">
+        <li>
+          <a href="#">Pro firmy<span class="arrow">▶</span></a>
+          <ul class="submenu">
+            <li><a href="#services">Najít talenty</a></li>
+            <li><a href="#services">Interim HR manažer</a></li>
+            <li><a href="#services">Umělá inteligence (AI)</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="#">Pro jednotlivce<span class="arrow">▶</span></a>
+          <ul class="submenu">
+            <li><a href="#services">Koučování</a></li>
+          </ul>
+        </li>
+        <li class="lang">
+          CZ / EN
+          <ul class="lang-switch">
+            <li><a href="#">CZ</a></li>
+            <li><a href="#">EN</a></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+  </header>
 
-    <!-- Hero Section -->
-    <section id="hero" class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <h1 data-cs="Profesionální Headhunting a HR Služby" data-en="Professional Headhunting & HR Services">Profesionální Headhunting a HR Služby</h1>
-                <p data-cs="Spojujeme nejlepší talenty s výjimečnými společnostmi. Specializujeme se na executive search a komplexní HR poradenství pro úspěšné firmy." data-en="Connecting top talents with exceptional companies. We specialize in executive search and comprehensive HR consulting for successful businesses.">Spojujeme nejlepší talenty s výjimečnými společnostmi. Specializujeme se na executive search a komplexní HR poradenství pro úspěšné firmy.</p>
-                <a href="#contact" class="cta-button">
-                    <span data-cs="Začněte s námi" data-en="Start With Us">Začněte s námi</span>
-                </a>
-            </div>
-        </div>
+  <main>
+    <!-- Hero -->
+    <section class="hero" id="hero">
+      <div>
+        <h1>Váš partner pro nejlepší talenty</h1>
+        <p>Profesionální headhunting & recruiter služby šité na míru</p>
+      </div>
     </section>
 
-    <!-- About Section -->
-    <section id="about" class="about">
-        <div class="container">
-            <div class="about-content">
-                <div class="about-text">
-                    <h2 data-cs="O mně" data-en="About Me">O mně</h2>
-                    <p data-cs="S více než 10 lety zkušeností v oblasti HR a executive search jsem pomohl stovkám společností najít klíčové zaměstnance a talenty rozvinout jejich kariéru." data-en="With over 10 years of experience in HR and executive search, I have helped hundreds of companies find key employees and talents develop their careers.">S více než 10 lety zkušeností v oblasti HR a executive search jsem pomohl stovkám společností najít klíčové zaměstnance a talenty rozvinout jejich kariéru.</p>
-                    
-                    <p data-cs="Mým cílem je vytvářet dlouhodobé partnerství založené na důvěře, profesionalitě a výsledcích. Specializuji se na pozice středního a vyššího managementu v technologických a finančních společnostech." data-en="My goal is to create long-term partnerships based on trust, professionalism and results. I specialize in middle and senior management positions in technology and financial companies.">Mým cílem je vytvářet dlouhodobé partnerství založené na důvěře, profesionalitě a výsledcích. Specializuji se na pozice středního a vyššího managementu v technologických a finančních společnostech.</p>
-                    
-                    <p data-cs="Věřím, že správní lidé na správných pozicích jsou klíčem k úspěchu každé organizace." data-en="I believe that the right people in the right positions are the key to the success of every organization.">Věřím, že správní lidé na správných pozicích jsou klíčem k úspěchu každé organizace.</p>
-                </div>
-                <div class="about-image">
-                    <div class="sketch-portrait"></div>
-                </div>
-            </div>
-        </div>
+    <!-- About -->
+    <section class="about" id="about">
+      <img src="https://via.placeholder.com/500x400?text=Profil" alt="Profil zakladatele" />
+      <div class="about-text">
+        <h2>O mně</h2>
+        <p>Jsem zkušený headhunter s více než 10 lety praxe v oboru. Pomáhám firmám najít klíčové talenty a jednotlivcům rozvíjet svou kariéru.</p>
+      </div>
     </section>
 
-    <!-- Services Section -->
-    <section id="services" class="services">
-        <div class="container">
-            <h2 data-cs="Naše Služby" data-en="Our Services">Naše Služby</h2>
-            <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-search"></i>
-                    </div>
-                    <h3 data-cs="Executive Search" data-en="Executive Search">Executive Search</h3>
-                    <p data-cs="Hledání a získávání top manažerů a klíčových specialistů pro vaši společnost s využitím našich rozsáhlých profesních sítí." data-en="Finding and acquiring top managers and key specialists for your company using our extensive professional networks.">Hledání a získávání top manažerů a klíčových specialistů pro vaši společnost s využitím našich rozsáhlých profesních sítí.</p>
-                </div>
-                
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-users"></i>
-                    </div>
-                    <h3 data-cs="HR Poradenství" data-en="HR Consulting">HR Poradenství</h3>
-                    <p data-cs="Komplexní poradenství v oblasti lidských zdrojů, organizačního rozvoje a optimalizace HR procesů ve vaší společnosti." data-en="Comprehensive human resources consulting, organizational development and optimization of HR processes in your company.">Komplexní poradenství v oblasti lidských zdrojů, organizačního rozvoje a optimalizace HR procesů ve vaší společnosti.</p>
-                </div>
-                
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                    <h3 data-cs="Kariérní Koučování" data-en="Career Coaching">Kariérní Koučování</h3>
-                    <p data-cs="Individuální koučování pro profesionály, kteří chtějí akcelerovat svou kariéru a dosáhnout svých cílů v osobním i profesním životě." data-en="Individual coaching for professionals who want to accelerate their career and achieve their goals in personal and professional life.">Individuální koučování pro profesionály, kteří chtějí akcelerovat svou kariéru a dosáhnout svých cílů v osobním i profesním životě.</p>
-                </div>
-            </div>
-        </div>
+    <!-- Services -->
+    <section class="services" id="services">
+      <div class="card">
+        <h3>Najít talenty</h3>
+        <p>Komplexní vyhledávání a selekce nejvhodnějších kandidátů pro vaši firmu.</p>
+      </div>
+      <div class="card">
+        <h3>Interim HR manažer</h3>
+        <p>Dočasné zastoupení a vedení HR oddělení s okamžitou dostupností.</p>
+      </div>
+      <div class="card">
+        <h3>Umělá inteligence (AI)</h3>
+        <p>Moderní AI nástroje pro rychlejší a přesnější náborový proces.</p>
+      </div>
+      <div class="card">
+        <h3>Koučování</h3>
+        <p>Individuální kariérní koučink pro maximální rozvoj vašeho potenciálu.</p>
+      </div>
     </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <div class="container">
-            <h2 data-cs="Kontaktujte nás" data-en="Contact Us">Kontaktujte nás</h2>
-            <div class="contact-content">
-                <form class="contact-form" id="contact-form">
-                    <div class="form-group">
-                        <label for="name" data-cs="Jméno a příjmení" data-en="Full Name">Jméno a příjmení</label>
-                        <input type="text" id="name" name="name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email" data-cs="E-mailová adresa" data-en="Email Address">E-mailová adresa</label>
-                        <input type="email" id="email" name="email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="phone" data-cs="Telefon" data-en="Phone">Telefon</label>
-                        <input type="tel" id="phone" name="phone">
-                    </div>
-                    <div class="form-group">
-                        <label for="message" data-cs="Zpráva" data-en="Message">Zpráva</label>
-                        <textarea id="message" name="message" placeholder="Popište váš dotaz nebo požadavek..." required></textarea>
-                    </div>
-                    <button type="submit" class="submit-btn">
-                        <span data-cs="Odeslat zprávu" data-en="Send Message">Odeslat zprávu</span>
-                    </button>
-                </form>
-                
-                <div class="contact-info">
-                    <h3 data-cs="Kontaktní informace" data-en="Contact Information">Kontaktní informace</h3>
-                    <div class="contact-item">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <span>Chrudim, Pardubický kraj, Česko</span>
-                    </div>
-                    <div class="contact-item">
-                        <i class="fas fa-phone"></i>
-                        <span>+420 xxx xxx xxx</span>
-                    </div>
-                    <div class="contact-item">
-                        <i class="fas fa-envelope"></i>
-                        <span>info@hrtalentpro.cz</span>
-                    </div>
-                    <div class="contact-item">
-                        <i class="fas fa-clock"></i>
-                        <span data-cs="Po-Pá: 9:00 - 17:00" data-en="Mon-Fri: 9:00 - 17:00">Po-Pá: 9:00 - 17:00</span>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <!-- Contact -->
+    <section class="contact" id="contact">
+      <form class="contact-form" onsubmit="return validateForm()">
+        <h2>Kontaktujte nás</h2>
+        <input type="text" name="name" placeholder="Jméno" required />
+        <input type="email" name="email" placeholder="Email" required />
+        <input type="tel" name="phone" placeholder="Telefon" required pattern="[0-9]{9,}" />
+        <textarea name="message" rows="5" placeholder="Vaše zpráva" required></textarea>
+        <button type="submit">Odeslat</button>
+      </form>
+      <div class="contact-details">
+        <h2>Kontaktní údaje</h2>
+        <p>Email: info@recruitpro.cz</p>
+        <p>Telefon: +420 123 456 789</p>
+        <p>Adresa: Palackého 123, Chrudim</p>
+      </div>
     </section>
+  </main>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <p data-cs="© 2025 HRTalent Pro. Všechna práva vyhrazena." data-en="© 2025 HRTalent Pro. All rights reserved.">&copy; 2025 HRTalent Pro. Všechna práva vyhrazena.</p>
-                <div class="social-links">
-                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
-                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                </div>
-            </div>
-        </div>
-    </footer>
+  <!-- Footer -->
+  <footer>
+    <div class="social">
+      <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+      <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+      <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+    </div>
+    <p>&copy; 2025 RecruitPro. Všechna práva vyhrazena.</p>
+  </footer>
 
-    <script>
-        // Mobile Menu Toggle
-        const hamburger = document.getElementById('hamburger');
-        const navMenu = document.getElementById('nav-menu');
-
-        hamburger.addEventListener('click', () => {
-            hamburger.classList.toggle('active');
-            navMenu.classList.toggle('active');
-        });
-
-        // Close mobile menu when clicking on a link
-        document.querySelectorAll('.nav-link').forEach(link => {
-            link.addEventListener('click', () => {
-                hamburger.classList.remove('active');
-                navMenu.classList.remove('active');
-            });
-        });
-
-        // Language Switcher
-        const langButtons = document.querySelectorAll('.lang-btn');
-        const currentLang = localStorage.getItem('language') || 'cs';
-
-        // Set initial language
-        setLanguage(currentLang);
-
-        langButtons.forEach(btn => {
-            btn.addEventListener('click', () => {
-                const lang = btn.getAttribute('data-lang');
-                setLanguage(lang);
-                localStorage.setItem('language', lang);
-            });
-        });
-
-        function setLanguage(lang) {
-            // Update active button
-            langButtons.forEach(btn => {
-                btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
-            });
-
-            // Update text content
-            document.querySelectorAll('[data-cs][data-en]').forEach(element => {
-                element.textContent = element.getAttribute('data-' + lang);
-            });
-
-            // Update placeholders
-            const messageTextarea = document.getElementById('message');
-            if (messageTextarea) {
-                messageTextarea.placeholder = lang === 'cs' 
-                    ? 'Popište váš dotaz nebo požadavek...' 
-                    : 'Describe your query or request...';
-            }
-        }
-
-        // Contact Form Handling
-        const contactForm = document.getElementById('contact-form');
-        contactForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            
-            // Get form data
-            const formData = new FormData(contactForm);
-            const data = Object.fromEntries(formData);
-            
-            // Simple validation
-            if (!data.name || !data.email || !data.message) {
-                alert(currentLang === 'cs' ? 'Prosím vyplňte všechna povinná pole.' : 'Please fill in all required fields.');
-                return;
-            }
-
-            // Email validation
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(data.email)) {
-                alert(currentLang === 'cs' ? 'Prosím zadejte platnou e-mailovou adresu.' : 'Please enter a valid email address.');
-                return;
-            }
-
-            // Simulate form submission
-            alert(currentLang === 'cs' 
-                ? 'Děkujeme za váš dotaz! Ozveme se vám do 24 hodin.' 
-                : 'Thank you for your inquiry! We will contact you within 24 hours.');
-            
-            contactForm.reset();
-        });
-
-        // Smooth scroll for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        // Add scroll effect to header
-        window.addEventListener('scroll', () => {
-            const header = document.querySelector('.header');
-            if (window.scrollY > 100) {
-                header.style.background = 'rgba(255, 255, 255, 0.95)';
-                header.style.backdropFilter = 'blur(10px)';
-            } else {
-                header.style.background = 'var(--secondary-color)';
-                header.style.backdropFilter = 'none';
-            }
-        });
-
-        // Service cards animation on scroll
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, observerOptions);
-
-        // Observe service cards for animation
-        document.querySelectorAll('.service-card').forEach(card => {
-            card.style.opacity = '0';
-            card.style.transform = 'translateY(30px)';
-            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-            observer.observe(card);
-        });
-    </script>
+  <!-- Font Awesome -->
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <script>
+    // Hamburger toggle
+    function toggleMenu() {
+      const menu = document.getElementById('menu');
+      menu.style.display = menu.style.display === 'flex' ? 'none' : 'flex';
+    }
+    // Form validation
+    function validateForm() {
+      // HTML5 does basic validation; can add custom checks here
+      return true;
+    }
+  </script>
 </body>
 </html>
